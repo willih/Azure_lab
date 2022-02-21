@@ -105,7 +105,7 @@
     "subnetName": "subnet1",
     "subnetPrefix": "10.101.1.0/24",
     "virtualNetworkName": "vNet1",
-    "networkSecurityGroupName": "default-NSG"
+    "networkSecurityGroupName": "VM1-NSG"
   },
   "resources": [
     {
