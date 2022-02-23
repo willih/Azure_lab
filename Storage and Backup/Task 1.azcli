@@ -1,14 +1,14 @@
-Group already created  "az group create --name rgp-wus2-cbeers --location westus2"
+Group already created  "az group create --name rgp-wus2-<username> --location westus2"
 
-az network nsg create --name Storage-NSG --resource-group rgp-wus2-cbeers --location westus2
+az network nsg create --name Storage-NSG --resource-group rgp-wus2-<username> --location westus2
 
- az network nsg rule create --name PermitRDP --nsg-name Storage-NSG --priority 1000 --resource-group rgp-wus2-cbeers --access Allow --source-address-prefixes "*" --source-port-ranges "*" --direction Inbound --destination-port-ranges 3389
-
-
- az network vnet create --name Storage-VNet --resource-group rgp-wus2-cbeers --address-prefixes 10.10.0.0/16 --location westus2
+ az network nsg rule create --name PermitRDP --nsg-name Storage-NSG --priority 1000 --resource-group rgp-wus2-<username> --access Allow --source-address-prefixes "*" --source-port-ranges "*" --direction Inbound --destination-port-ranges 3389
 
 
- az network vnet subnet create --address-prefix 10.10.10.0/24 --name Storage-Subnet --resource-group rgp-wus2-cbeers --vnet-name Storage-VNet --network-security-group Storage-NSG
+ az network vnet create --name Storage-VNet --resource-group rgp-wus2-<username> --address-prefixes 10.10.0.0/16 --location westus2
 
 
- az vm create --resource-group rgp-wus2-cbeers --name VM1 --size Standard_D2s_v3 --image Win2019Datacenter --admin-username storadmin --admin-password Complex.Password --nsg Storage-NSG --private-ip-address 10.10.10.11
+ az network vnet subnet create --address-prefix 10.10.10.0/24 --name Storage-Subnet --resource-group rgp-wus2-<username> --vnet-name Storage-VNet --network-security-group Storage-NSG
+
+
+ az vm create --resource-group rgp-wus2-<username> --name VM1 --size Standard_D2s_v3 --image Win2019Datacenter --admin-username storadmin --admin-password Complex.Password --nsg Storage-NSG --private-ip-address 10.10.10.11
